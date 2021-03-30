@@ -5,9 +5,9 @@ import { useTeams } from "msteams-react-base-component";
 import * as microsoftTeams from "@microsoft/teams-js";
 
 /**
- * Implementation of Message Center configuration page
+ * Implementation of DemoTab configuration page
  */
-export const MessageCenterTabConfig = () => {
+export const DemoTabConfig = () => {
 
     const [{ inTeams, theme, context }] = useTeams({});
     const [text, setText] = useState<string>();
@@ -16,10 +16,10 @@ export const MessageCenterTabConfig = () => {
     const onSaveHandler = (saveEvent: microsoftTeams.settings.SaveEvent) => {
         const host = "https://" + window.location.host;
         microsoftTeams.settings.setSettings({
-            contentUrl: host + "/messageCenterTab/?name={loginHint}&tenant={tid}&group={groupId}&theme={theme}",
-            websiteUrl: host + "/messageCenterTab/?name={loginHint}&tenant={tid}&group={groupId}&theme={theme}",
-            suggestedDisplayName: "Message Center",
-            removeUrl: host + "/messageCenterTab/remove.html?theme={theme}",
+            contentUrl: host + "/demoTab/?name={loginHint}&tenant={tid}&group={groupId}&theme={theme}",
+            websiteUrl: host + "/demoTab/?name={loginHint}&tenant={tid}&group={groupId}&theme={theme}",
+            suggestedDisplayName: "DemoTab",
+            removeUrl: host + "/demoTab/remove.html?theme={theme}",
             entityId: entityId.current
         });
         saveEvent.notifySuccess();

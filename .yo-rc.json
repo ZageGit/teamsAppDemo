@@ -1,9 +1,9 @@
 {
   "generator-teams": {
     "promptValues": {
-      "developer": "atwork"
+      "developer": "Johannes Zarre"
     },
-    "libraryName": "clientSideTeamsApp",
+    "libraryName": "teamsApp",
     "generator-version": "3.0.0-preview3"
   }
 }

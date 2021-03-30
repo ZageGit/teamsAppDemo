@@ -1,4 +1,4 @@
-// Copyright (c) Wictor Wilén. All rights reserved.
+// Copyright (c) Wictor Wilén. All rights reserved. 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT license.
 
@@ -14,95 +14,92 @@ const argv = require("yargs").argv;
 const debug = argv.debug !== undefined;
 const lint = argv["linting"];
 
-const config = [
-  {
+const config = [{
     entry: {
-      server: [path.join(__dirname, "/src/server/server.ts")],
+        server: [
+            path.join(__dirname, "/src/server/server.ts")
+        ]
     },
     mode: debug ? "development" : "production",
     output: {
-      path: path.join(__dirname, "/dist"),
-      filename: "[name].js",
-      devtoolModuleFilenameTemplate: debug ? "[absolute-resource-path]" : "[]",
+        path: path.join(__dirname, "/dist"),
+        filename: "[name].js",
+        devtoolModuleFilenameTemplate: debug ? "[absolute-resource-path]" : "[]"
     },
     externals: [nodeExternals()],
     devtool: "source-map",
     resolve: {
-      extensions: [".ts", ".tsx", ".js"],
-      alias: {},
+        extensions: [".ts", ".tsx", ".js"],
+        alias: {}
     },
     target: "node",
     node: {
-      __dirname: false,
-      __filename: false,
+        __dirname: false,
+        __filename: false
     },
     module: {
-      rules: [
-        {
-          test: /\.tsx?$/,
-          exclude: /node_modules/,
-          use: ["ts-loader"],
-        },
-      ],
+        rules: [{
+            test: /\.tsx?$/,
+            exclude: /node_modules/,
+            use: ["ts-loader"]
+        }]
     },
-    plugins: [],
-  },
-  {
+    plugins: []
+},
+{
     entry: {
-      client: [path.join(__dirname, "/src/client/client.ts")],
+        client: [
+            path.join(__dirname, "/src/client/client.ts")
+        ]
     },
     mode: debug ? "development" : "production",
     output: {
-      path: path.join(__dirname, "/dist/web/scripts"),
-      filename: "[name].js",
-      libraryTarget: "umd",
-      library: "clientSideTeamsApp",
-      publicPath: "/scripts/",
+        path: path.join(__dirname, "/dist/web/scripts"),
+        filename: "[name].js",
+        libraryTarget: "umd",
+        library: "teamsApp",
+        publicPath: "/scripts/"
     },
     externals: {},
     devtool: "source-map",
     resolve: {
-      extensions: [".ts", ".tsx", ".js"],
-      alias: {},
+        extensions: [".ts", ".tsx", ".js"],
+        alias: {}
     },
     target: "web",
     module: {
-      rules: [
-        {
-          test: /\.tsx?$/,
-          exclude: /node_modules/,
-          use: ["ts-loader"],
+        rules: [{
+            test: /\.tsx?$/,
+            exclude: /node_modules/,
+            use: ["ts-loader"]
         },
         {
-          test: /\.css$/i,
-          use: ["style-loader", "css-loader"],
-        },
-        {
-          test: /\.(woff|woff2)$/,
-          use: {
-            loader: "url-loader",
-          },
-        },
-      ],
+            test: /\.(eot|svg|ttf|woff|woff2)$/,
+            loader: "file-loader",
+            options: {
+                name: "public/fonts/[name].[ext]"
+            }
+        }
+        ]
     },
     plugins: [
-      new Dotenv({
-        systemvars: true,
-      }),
+        new Dotenv({
+            systemvars: true
+        })
     ],
     performance: {
-      maxEntrypointSize: 400000,
-      maxAssetSize: 400000,
-      assetFilter(assetFilename) {
-        return assetFilename.endsWith(".js");
-      },
-    },
-  },
+        maxEntrypointSize: 400000,
+        maxAssetSize: 400000,
+        assetFilter(assetFilename) {
+            return assetFilename.endsWith(".js");
+        }
+    }
+}
 ];
 
 if (lint !== false) {
-  config[0].plugins.push(new ESLintPlugin({ extensions: ["ts", "tsx"] }));
-  config[1].plugins.push(new ESLintPlugin({ extensions: ["ts", "tsx"] }));
+    config[0].plugins.push(new ESLintPlugin({ extensions: ["ts", "tsx"] }));
+    config[1].plugins.push(new ESLintPlugin({ extensions: ["ts", "tsx"] }));
 }
 
 module.exports = config;

@@ -5,9 +5,9 @@ import { useTeams } from "msteams-react-base-component";
 import * as microsoftTeams from "@microsoft/teams-js";
 
 /**
- * Implementation of Message Center remove page
+ * Implementation of DemoTab remove page
  */
-export const MessageCenterTabRemove = () => {
+export const DemoTabRemove = () => {
 
     const [{ inTeams, theme }] = useTeams();
 

@@ -1,4 +1,4 @@
-# client_side_teams_app - Microsoft Teams App
+# MyFirstTeamsApp - Microsoft Teams App
 
 Generate a Microsoft Teams application.
 
