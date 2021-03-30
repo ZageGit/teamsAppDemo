@@ -1,0 +1,24 @@
+{
+  "extends": ["standard"],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "rules": {
+    "object-shorthand": 2,
+    "quotes": ["warn", "double"],
+    "semi": ["error", "always"],
+    "indent": "off",
+    "space-before-function-paren": "off",
+    "space-in-parens": "off",
+    "padded-blocks": "off",
+    "no-unused-vars": "off",
+    "comma-dangle": "off",
+    "eqeqeq": [2, "allow-null"],
+    "multiline-ternary": ["warn", "never"],
+    "no-unneeded-ternary": "warn",
+    "avoidEscape": 0
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "generator-teams": {
+    "promptValues": {
+      "developer": "atwork"
+    },
+    "libraryName": "clientSideTeamsApp",
+    "generator-version": "3.0.0-preview3"
+  }
+}
